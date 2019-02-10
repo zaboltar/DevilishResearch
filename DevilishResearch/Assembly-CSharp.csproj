@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\InfoNotes.cs" />
      <Compile Include="Assets\Scripts\ClickToMove.cs" />
      <Compile Include="Assets\Scripts\enemyHealth.cs" />
      <Compile Include="Assets\Scripts\fighter.cs" />
@@ -59,11 +60,11 @@
      <Compile Include="Assets\Scripts\smoothCamFollow.cs" />
      <Compile Include="Assets\Scripts\specialAttack.cs" />
      <None Include="Assets\Skeletons Pack\SkeletonData\animations.txt" />
- <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>D:/Mis Documentos/Desktop/test git/DevilishResearch/DevilishResearch/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>D:/Mis Documentos/Desktop/test git/DevilishResearch/DevilishResearch/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>D:/Mis Documentos/Desktop/test git/Devilish Research/DevilishResearch/DevilishResearch/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.PackageManagerUI.Editor">
+ <HintPath>D:/Mis Documentos/Desktop/test git/Devilish Research/DevilishResearch/DevilishResearch/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2017 31f1 version area 51/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
