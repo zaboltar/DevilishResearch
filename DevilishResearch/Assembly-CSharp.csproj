@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\mob.cs" />
      <Compile Include="Assets\Scripts\smoothCamFollow.cs" />
      <Compile Include="Assets\Scripts\specialAttack.cs" />
+     <Compile Include="Assets\Scripts\Strike.cs" />
      <Compile Include="Assets\SimpleParticlePack\Scripts\ParticleTester.cs" />
      <None Include="Assets\Skeletons Pack\SkeletonData\animations.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">

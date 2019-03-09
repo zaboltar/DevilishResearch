@@ -8149,6 +8149,7 @@ MonoBehaviour:
   particleFX: {fileID: 5779621792023751629, guid: 4a2debd5e728a324a998b86b04035809,
     type: 3}
   projectile: 0
+  opponentBased: 1
 --- !u!114 &1981263658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8169,3 +8170,25 @@ MonoBehaviour:
   particleFX: {fileID: 331708726586782703, guid: ab80313ff0f66d641a014d37f6718b05,
     type: 3}
   projectile: 0
+  opponentBased: 1
+--- !u!114 &1981263659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981263650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f9b699f6adf5c47908a021f804d839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePercentage: 0
+  stunTime: 0
+  key: 51
+  player: {fileID: 1981263655}
+  inAction: 0
+  particleFX: {fileID: 3485403114246369756, guid: 85a4b8cfbfeeab84f80db545d62405ac,
+    type: 3}
+  projectile: 1
+  opponentBased: 0

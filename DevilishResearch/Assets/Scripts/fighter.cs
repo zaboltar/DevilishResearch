@@ -47,7 +47,7 @@ public class fighter : MonoBehaviour {
        
         if(inAction)
             {
-                if(AttackFunction(0, 1, KeyCode.Space, null))
+                if(AttackFunction(0, 1, KeyCode.Space, null, 0, true))
                 {
 
                 } else
@@ -60,23 +60,33 @@ public class fighter : MonoBehaviour {
         Die();
     }
 
-    public bool AttackFunction(int stunSeconds, double scaledDamage, KeyCode key, GameObject particleFX)
+    public bool AttackFunction(int stunSeconds, double scaledDamage, KeyCode key, GameObject particleFX, int projectile, bool opponentBased)
     {
-        /* if (Input.GetKeyDown(KeyCode.S)) {
-           opponent.GetComponent<mob>().getStun(5);
-       }*/
-
-        if (Input.GetKey(key) && inRange())
+      if (opponentBased)
         {
-            anim.Play("attack");
-            ClickToMove.attack = true;
-
-            if (opponent != null)
+            if (Input.GetKey(key) && inRange())
             {
-                transform.LookAt(opponent.transform.position);
+                anim.Play("attack");
+                ClickToMove.attack = true;
 
+                if (opponent != null)
+                {
+                    transform.LookAt(opponent.transform.position);
+
+                }
             }
+        }
+        else
+        {
+            
+            if (Input.GetKey(key))
+            {
+                anim.Play("attack");
+                ClickToMove.attack = true;
+                transform.LookAt(ClickToMove.cursorPosition);
 
+                
+            }
         }
 
         if (anim["attack"].time > 0.9 * anim["attack"].length)
@@ -90,7 +100,7 @@ public class fighter : MonoBehaviour {
             return false;
         }
 
-        Impact(stunSeconds, scaledDamage, particleFX);
+        Impact(stunSeconds, scaledDamage, particleFX, projectile, opponentBased);
         return true;
     }
 
@@ -103,9 +113,9 @@ public class fighter : MonoBehaviour {
 
     }
 
-    void Impact(int stunSeconds, double scaledDamage, GameObject particleFX)
+    void Impact(int stunSeconds, double scaledDamage, GameObject particleFX, int projectile, bool opponentBased)
     {
-        if (opponent != null && anim.IsPlaying("attack") && !impacted)
+        if (!opponentBased || opponent != null && anim.IsPlaying("attack") && !impacted)
         {
             if (anim["attack"].time > impactLength && anim["attack"].time <  0.9 * anim["attack"].length )
             {
@@ -113,8 +123,26 @@ public class fighter : MonoBehaviour {
                 countDown = combatEscapeTime +2;
                 CancelInvoke("combatEscapeCountDown");
                 InvokeRepeating("combatEscapeCountDown", 0, 1);
-                opponent.GetComponent<mob>().GetHit(damage * scaledDamage);
-                opponent.GetComponent<mob>().getStun(stunSeconds);
+
+                if (opponentBased)
+                {
+                    opponent.GetComponent<mob>().GetHit(damage * scaledDamage);
+                    opponent.GetComponent<mob>().getStun(stunSeconds);
+                }
+
+                
+
+                //Send Spheres
+                Quaternion rot = transform.rotation;
+                rot.x = 0f;
+                rot.z = 0f;
+
+                if (projectile > 0)
+                {
+                    //shoot
+                    GameObject bolt = (GameObject) Instantiate(Resources.Load("Projectile"), new Vector3 (transform.position.x, transform.position.y + 1.5f, transform.position.z) , rot);
+                    Destroy(bolt, 5f);
+                }
                 //Play partFX
                 if (particleFX != null)
                 {
