@@ -47,7 +47,7 @@ public class fighter : MonoBehaviour {
        
         if(inAction)
             {
-                if(AttackFunction(0, 1, KeyCode.Space))
+                if(AttackFunction(0, 1, KeyCode.Space, null))
                 {
 
                 } else
@@ -60,7 +60,7 @@ public class fighter : MonoBehaviour {
         Die();
     }
 
-    public bool AttackFunction(int stunSeconds, double scaledDamage, KeyCode key)
+    public bool AttackFunction(int stunSeconds, double scaledDamage, KeyCode key, GameObject particleFX)
     {
         /* if (Input.GetKeyDown(KeyCode.S)) {
            opponent.GetComponent<mob>().getStun(5);
@@ -90,7 +90,7 @@ public class fighter : MonoBehaviour {
             return false;
         }
 
-        Impact(stunSeconds, scaledDamage);
+        Impact(stunSeconds, scaledDamage, particleFX);
         return true;
     }
 
@@ -103,7 +103,7 @@ public class fighter : MonoBehaviour {
 
     }
 
-    void Impact(int stunSeconds, double scaledDamage)
+    void Impact(int stunSeconds, double scaledDamage, GameObject particleFX)
     {
         if (opponent != null && anim.IsPlaying("attack") && !impacted)
         {
@@ -115,6 +115,12 @@ public class fighter : MonoBehaviour {
                 InvokeRepeating("combatEscapeCountDown", 0, 1);
                 opponent.GetComponent<mob>().GetHit(damage * scaledDamage);
                 opponent.GetComponent<mob>().getStun(stunSeconds);
+                //Play partFX
+                if (particleFX != null)
+                {
+                    Instantiate(particleFX, new Vector3(opponent.transform.position.x, opponent.transform.position.y + 1.5f, opponent.transform.position.z), Quaternion.identity);
+                }
+                
                 impacted = true;
             }
         }

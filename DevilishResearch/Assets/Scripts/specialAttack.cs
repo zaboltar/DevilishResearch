@@ -9,6 +9,9 @@ public class specialAttack : MonoBehaviour {
     public KeyCode key;
     public fighter player;
     public bool inAction;
+
+    public GameObject particleFX;
+
     public int projectile;
     
 
@@ -28,7 +31,7 @@ public class specialAttack : MonoBehaviour {
 
         if (inAction)
         {
-            if (player.AttackFunction(stunTime, damagePercentage, key))
+            if (player.AttackFunction(stunTime, damagePercentage, key, particleFX))
             {
 
             } else
