@@ -70,8 +70,10 @@ public class mob : MonoBehaviour {
    	}
 
     void Attack()
-    {
-
+    { 
+        opponent.getHit(damage);
+        impacted = true;
+    
 
         if (anim["attack"].time > anim["attack"].length * impactTime && !impacted && anim["attack"].time < 0.9 * anim["attack"].length)
         {

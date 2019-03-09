@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class fighter : MonoBehaviour {
 
@@ -27,19 +29,23 @@ public class fighter : MonoBehaviour {
     public bool specialAttack;
     public bool inAction;
 
+    public Slider hpBar;
+
     
 
     // Use this for initialization
     void Start () {
+        
         health = maxHealth;
         impactLength = (anim["attack"].length * impactTime);
+        hpBar.maxValue = maxHealth;
     }
 	
     
 
 	// Update is called once per frame
 	void Update () {
-
+        hpBar.value = health;
         if (Input.GetKey(KeyCode.Space) && !specialAttack)
             {
                 inAction = true;
@@ -171,6 +177,7 @@ public class fighter : MonoBehaviour {
         {
             health = 0;
         }
+        Debug.Log("Tic" + health);
     }
 
   
@@ -213,12 +220,15 @@ public class fighter : MonoBehaviour {
                 //death logics
 
                 Debug.Log("dead!");
+                SceneManager.LoadScene("PlayMode");
 
-                health = 100;
+                // health = 100;
 
                 ended = true;
                 started = false;
                 ClickToMove.die = false;
+
+
             }
             
         }
